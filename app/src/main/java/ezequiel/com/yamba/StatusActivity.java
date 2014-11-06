@@ -4,16 +4,34 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.view.View.OnClickListener;
+import android.util.Log;
 
+public class StatusActivity extends ActionBarActivity implements OnClickListener{
 
-public class StatusActivity extends ActionBarActivity {
+    private static final String TAG = "StatusActivity";
+    private EditText editStatus;
+    private Button buttonTweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
+
+        editStatus = (EditText) findViewById(R.id.editStatus);
+        buttonTweet = (Button) findViewById(R.id.buttonTweet);
+
+        buttonTweet.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View view){
+        String status = editStatus.getText().toString();
+        Log.d(TAG, "onClicked with status: " + status);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
